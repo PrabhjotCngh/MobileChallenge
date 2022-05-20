@@ -20,6 +20,7 @@ class PostsViewModel {
     var requestSucceeded: ()->() = {}
     var requestFailed: ()->() = {}
     
+    //MARK: - Public methods
     func getUserToken() {
         APIController.shared.fetchUserToken { [weak self] token, error in
             if let _StrongSelf = self {
