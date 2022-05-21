@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
-class PostsViewModel {
+class PostsViewModel: NSObject {
     //Private instances
     private var totalFailRequests = 0
     private var totalSuccessRequests = 0
@@ -90,5 +91,28 @@ extension PostsViewModel {
                 _StrongSelf.dispatchGroup.leave()
             }
         }
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension PostsViewModel: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return usersModel.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: PostsTableViewCell.identifier, for: indexPath) as? PostsTableViewCell {
+            if  postsModel.count >= indexPath.row && usersModel.count >= indexPath.row {
+                let postsModel = postsModel[indexPath.row]
+                let usersModel = usersModel[indexPath.row]
+                cell.configureCell(postsModel, usersModel)
+            }
+            return cell
+        }
+        return UITableViewCell()
     }
 }
