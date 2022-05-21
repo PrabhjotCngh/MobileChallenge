@@ -9,6 +9,7 @@
 import Foundation
 
 
+//MARK: - Static constants for alertView
 enum AlertViewConstants {
     static let ok = "OK"
     static let error = "Error"

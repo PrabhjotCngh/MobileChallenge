@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class Utility {
+    //MARK: - Static method to display alertView on any controller
     static func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: AlertViewConstants.ok, style: .default, handler: nil)

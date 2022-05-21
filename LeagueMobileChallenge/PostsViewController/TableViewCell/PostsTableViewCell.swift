@@ -15,10 +15,12 @@ class PostsTableViewCell: UITableViewCell {
     @IBOutlet weak var lSubTitleLabel: UILabel!
     @IBOutlet weak var lDescriptionTitleLabel: UILabel!
 
+    /// returning cell nib name
     static var nib:UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
           
+    /// returning cell identifier 
     static var identifier: String {
         return String(describing: self)
     }
@@ -33,11 +35,12 @@ class PostsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(_ postsModel: PostsModel, _ usersModel: UsersModel) {
-        let url = URL(string: usersModel.avatar.thumbnail)
+    /// Configure custom tableview cell with data
+    func configureCell(name: String, thumbnail: String, title: String, body: String) {
+        let url = URL(string: thumbnail)
         ivAvatarImageView.sd_setImage(with: url)
-        lUsernameLabel.text = usersModel.name
-        lSubTitleLabel.text = postsModel.title
-        lDescriptionTitleLabel.text = postsModel.body
+        lUsernameLabel.text = name
+        lSubTitleLabel.text = title
+        lDescriptionTitleLabel.text = body
     }
 }

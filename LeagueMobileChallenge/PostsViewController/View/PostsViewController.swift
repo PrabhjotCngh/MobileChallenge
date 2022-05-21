@@ -26,16 +26,13 @@ class PostsViewController: UITableViewController {
 
 //MARK: - Private methods
 extension PostsViewController {
+    /// Configure tableView with datasource and register tableViewCell
     private func intialiseTableView()  {
         tvTableView?.dataSource = viewModel
         tvTableView?.register(PostsTableViewCell.nib, forCellReuseIdentifier: PostsTableViewCell.identifier)
     }
     
-    
-    private func registerCell() {
-        self.tvTableView.register(PostsTableViewCell.nib, forCellReuseIdentifier: PostsTableViewCell.identifier)
-    }
-    
+    /// Reload tableView on main thread
     private func reloadTableView() {
         DispatchQueue.main.async {
             self.tvTableView.isHidden = false
@@ -43,6 +40,7 @@ extension PostsViewController {
         }
     }
     
+    /// Handle call backs from ViewModel
     private func handleCallBacks() {
         viewModel.requestSucceeded = { [weak self] in
             if let _StrongSelf = self {

@@ -22,6 +22,7 @@ class APIController {
     
     fileprivate var userToken: String?
     
+    //MARK: - API request to fetch user token
     func fetchUserToken(userName: String = "", password: String = "", completion: @escaping (String?, Error?) -> Void) {
         guard let url = URL(string: loginAPI) else {
             return
@@ -45,6 +46,7 @@ class APIController {
         }
     }
 
+    //MARK: - API request to fetch all user posts
     func fetchPosts(completion: @escaping (Any?, Error?) -> Void) {
         guard let url = URL(string: postAPI) else {
             return
@@ -55,7 +57,8 @@ class APIController {
         }
 
     }
-
+    
+    //MARK: - API request to fetch all users
     func fetchUsers(completion: @escaping (Any?, Error?) -> Void) {
         guard let url = URL(string: userAPI) else {
             return
@@ -66,6 +69,7 @@ class APIController {
         }
     }
     
+    //MARK: - API request to fetch any other data from URL
     func request(url: URL, completion: @escaping (Data?, Error?) -> Void) {
         guard let userToken = userToken else {
             NSLog("No user token set")
