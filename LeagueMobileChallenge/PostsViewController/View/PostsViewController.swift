@@ -59,6 +59,7 @@ extension PostsViewController {
     
     private func reloadTableView() {
         DispatchQueue.main.async {
+            self.tvTableView.isHidden = false
             self.tvTableView.reloadData()
         }
     }
@@ -72,6 +73,7 @@ extension PostsViewController {
     
         viewModel.requestFailed = {
             DispatchQueue.main.async {
+                self.tvTableView.isHidden = true
                 Utility.displayAlert(title: AlertViewConstants.error, message: AlertViewConstants.errorMessage)
             }
         }
